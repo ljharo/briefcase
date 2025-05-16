@@ -1,0 +1,989 @@
+/* Base Styles */
+:root {
+  --primary-bg: #0a192f;
+  --secondary-bg: #112240;
+  --text-primary: #ccd6f6;
+  --text-secondary: #8892b0;
+  --accent-color: #64ffda;
+  --nav-width: 300px;
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fira Code", monospace;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: var(--transition);
+}
+
+h2:hover::after {
+  transform: scaleX(1);
+}
+
+/* Layout */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: var(--nav-width);
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  position: fixed;
+  height: 100vh;
+  border-right: 1px solid rgba(100, 255, 218, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content {
+  margin-left: var(--nav-width);
+  flex: 1;
+  padding: 3rem 5rem;
+}
+
+/* Sidebar Styles */
+.sidebar-header h1 {
+  margin-bottom: 0.2rem; /* Reduce el espacio debajo del nombre */
+}
+
+.sidebar-header h2 {
+  margin-top: 0;
+  margin-bottom: 0.2rem; /* Espacio después de "Backend" */
+}
+
+.sidebar-header h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem; /* Espacio después de "Developer" */
+  font-size: 1.2rem; /* Tamaño coherente para la segunda parte del subtítulo */
+}
+
+.sidebar-header p {
+  margin-top: 0.5rem; /* Espacio mínimo sobre el párrafo */
+  margin-bottom: 1rem; /* Espacio después del párrafo */
+}
+
+.tagline {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+/* Navigation */
+.nav-list {
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: "Fira Code", monospace;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  display: inline-block;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.nav-link::before {
+  content: "▹";
+  position: absolute;
+  left: -20px;
+  color: var(--accent-color);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+  left: -15px;
+}
+
+.nav-link.active {
+  color: var(--accent-color);
+}
+
+.nav-link.active::before {
+  content: "▹";
+  position: absolute;
+  left: -15px;
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+/* estilos para boton de descarga */
+.download-btn {
+  background-color: var(--accent-color);
+  color: var(--primary-bg);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-family: "Fira Code", monospace;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: var(--transition);
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.download-btn:hover {
+  background-color: var(--secondary-bg);
+  color: var(--accent-color);
+  border: #64ffda 2px solid;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para la lista de redes sociales */
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-links__item {
+  margin: 0;
+  padding: 0;
+}
+
+.social-links__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #333;
+  background-color: var(--text-primary);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social-links__link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.social-links__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+}
+
+/* Colores específicos para cada red social al hacer hover */
+.social-links__link[title="GitHub"]:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+.social-links__link[title="LinkedIn"]:hover {
+  color: #fff;
+  background-color: #0077b5;
+}
+
+.social-links__link[title="Instagram"]:hover {
+  color: #fff;
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+  );
+}
+
+/* Efecto al hacer click */
+.social-links__link:active {
+  transform: scale(0.95);
+}
+
+/* Estilo para focus accessibility */
+.social-links__link:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Content Sections */
+.section {
+  margin-bottom: 4rem;
+  padding: 2rem 0;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-title {
+  margin-bottom: 2.5rem;
+}
+
+.section-title::before {
+  /* content: "02."; */
+  margin-right: 0.5rem;
+  color: var(--accent-color);
+  font-family: "Fira Code", monospace;
+  font-size: 1.2rem;
+}
+
+.section-content {
+  max-width: 700px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 2rem;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .section {
+    min-height: auto;
+    padding: 1rem 0;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Visually Hidden (for accessibility) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Estilos para el bloque de código */
+.code-block {
+  background-color: var(--primary-bg);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.code-block pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Colores de sintaxis */
+.code-comment {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.code-keyword {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.code-class {
+  color: #569cd6;
+}
+
+.code-function {
+  color: #dcdcaa;
+}
+
+.code-var {
+  color: var(--text-primary);
+}
+
+.code-string {
+  color: #ce9178;
+}
+
+/* Texto descriptivo */
+.about-description {
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .code-block {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* experiencia  */
+
+.experience-section {
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  transition: var(--transition);
+}
+
+.experience-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--secondary-bg);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.experience-item {
+  position: relative;
+  background-color: var(--primary-bg);
+  border-left: 2px solid var(--accent-color);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+/* Efecto hover mejorado para el item completo */
+.experience-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px -10px rgba(100, 255, 218, 0.3);
+  border-left-color: var(--accent-color);
+}
+
+.experience-summary {
+  padding: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.experience-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Estilos mejorados para el enlace */
+.experience-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+  align-items: center;
+  position: relative;
+  transition: var(--transition);
+}
+
+/* Efecto hover más evidente para enlaces externos */
+.experience-link[target="_blank"]:hover {
+  color: var(--accent-color);
+}
+
+.experience-link[target="_blank"]:hover h3::after {
+  content: "   🔎";
+  color: var(--accent-color);
+}
+
+.experience-link[target="_blank"]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+  animation: underline-grow 0.3s ease-out;
+}
+
+@keyframes underline-grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.experience-link h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.experience-icon {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+/* Contenido - Estado inicial */
+.experience-content {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 1.5rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translateY(-10px);
+  will-change: max-height, opacity, transform;
+}
+
+/* Efecto hover para abrir el contenido */
+.experience-summary:hover ~ .experience-content,
+.experience-item[open] .experience-content,
+.experience-summary:focus ~ .experience-content {
+  max-height: 500px;
+  opacity: 1;
+  padding: 0 1.5rem 1.5rem;
+  transform: translateY(0);
+}
+
+/* Mejoras visuales del hover */
+.experience-summary:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+}
+
+.experience-item[open] .experience-icon {
+  transform: rotate(45deg);
+}
+
+.experience-content p {
+  margin-top: 0;
+}
+
+.experience-content ul {
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.experience-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 1.5rem;
+  }
+
+  .experience-summary {
+    padding: 1rem;
+  }
+
+  .experience-link h3 {
+    font-size: 1.1rem;
+  }
+
+  .experience-link[target="_blank"]:hover::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 1rem;
+  }
+
+  .experience-summary {
+    padding: 0.75rem;
+  }
+
+  .experience-link {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-icon {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Optimización para móviles */
+@media (hover: none) {
+  .experience-summary:hover ~ .experience-content {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .experience-item[open] .experience-content {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .experience-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* estudios */
+
+/* Estilos generales de la sección */
+.section {
+  padding: 2rem;
+  background-color: var(--secondary-bg);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+  margin-top: 0.5rem;
+}
+
+/* Estilo de lista cronológica */
+.studies-list {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.study-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.study-content {
+  position: relative;
+  transition: var(--transition);
+}
+
+/* Punto de la línea de tiempo */
+.study-dot {
+  position: absolute;
+  left: -2.1rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  border: 2px solid var(--secondary-bg);
+  z-index: 1;
+}
+
+.study-title {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+}
+
+.study-institution {
+  margin: 0;
+}
+
+.study-institution a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: normal;
+  transition: var(--transition);
+  display: inline-block;
+  position: relative;
+}
+
+.study-institution a:hover {
+  color: var(--accent-color);
+}
+
+.study-institution a::after {
+  content: " 🔎";
+  font-size: 0.9em;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.study-institution a:hover::after {
+  opacity: 1;
+  color: var(--accent-color);
+}
+
+/* Efectos hover */
+.study-item:hover .study-title {
+  color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+.study-item:hover .study-dot {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 1.5rem;
+  }
+
+  .study-title {
+    font-size: 1.2rem;
+  }
+
+  .study-institution a {
+    font-size: 0.95rem;
+  }
+}
+
+/* conocimientos */
+
+/* Estilos para la sección de conocimientos */
+
+.knowledge-section {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.knowledge-subtitle {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilo de lista personalizado */
+.knowledge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.knowledge-item {
+  display: list-item; /* Fuerza el comportamiento de lista */
+  list-style-position: inside; /* Puntos dentro del flujo */
+}
+
+.knowledge-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+  transition: var(--transition);
+}
+
+.knowledge-icon {
+  width: 50px;
+  height: 50px;
+  transition: var(--transition);
+  filter: grayscale(20%);
+}
+
+.knowledge-link:hover .knowledge-icon {
+  transform: translateY(-5px);
+  filter: grayscale(0%);
+}
+
+/* Tooltip */
+.knowledge-tooltip {
+  position: absolute;
+  bottom: -25px;
+  background-color: var(--secondary-bg);
+  color: var(--accent-color);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: var(--transition);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.knowledge-link:hover .knowledge-tooltip {
+  opacity: 1;
+  transform: translateY(5px);
+}
+
+/* Efecto hover para los items */
+.knowledge-item:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .knowledge-list {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .knowledge-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .knowledge-list {
+    gap: 0.8rem;
+  }
+
+  .knowledge-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .knowledge-tooltip {
+    font-size: 0.7rem;
+    bottom: -20px;
+  }
+}
+
+/* contacto */
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-color);
+}
+
+.contact-item a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.contact-item a:hover {
+  color: var(--accent-color);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+/* Form Styles */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  background-color: var(--secondary-bg);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  border-radius: 4px;
+  padding: 0.8rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  align-self: flex-start;
+}
+
+.submit-btn:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info {
+    order: 2;
+  }
+
+  .contact-form {
+    order: 1;
+  }
+}
