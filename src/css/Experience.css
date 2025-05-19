@@ -1,0 +1,210 @@
+/* experiencia  */
+
+.experience-section {
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  transition: var(--transition);
+}
+
+.experience-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--secondary-bg);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.experience-item {
+  position: relative;
+  background-color: var(--primary-bg);
+  border-left: 2px solid var(--accent-color);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+/* Efecto hover mejorado para el item completo */
+.experience-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px -10px rgba(100, 255, 218, 0.3);
+  border-left-color: var(--accent-color);
+}
+
+.experience-summary {
+  padding: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.experience-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Estilos mejorados para el enlace */
+.experience-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+  align-items: center;
+  position: relative;
+  transition: var(--transition);
+}
+
+/* Efecto hover más evidente para enlaces externos */
+.experience-link[target="_blank"]:hover {
+  color: var(--accent-color);
+}
+
+.experience-link[target="_blank"]:hover h3::after {
+  content: "   🔎";
+  color: var(--accent-color);
+}
+
+.experience-link[target="_blank"]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+  animation: underline-grow 0.3s ease-out;
+}
+
+@keyframes underline-grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.experience-link h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.experience-icon {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+/* Contenido - Estado inicial */
+.experience-content {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 1.5rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translateY(-10px);
+  will-change: max-height, opacity, transform;
+}
+
+/* Efecto hover para abrir el contenido */
+.experience-summary:hover ~ .experience-content,
+.experience-item[open] .experience-content,
+.experience-summary:focus ~ .experience-content {
+  max-height: 500px;
+  opacity: 1;
+  padding: 0 1.5rem 1.5rem;
+  transform: translateY(0);
+}
+
+/* Mejoras visuales del hover */
+.experience-summary:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+}
+
+.experience-item[open] .experience-icon {
+  transform: rotate(45deg);
+}
+
+.experience-content p {
+  margin-top: 0;
+}
+
+.experience-content ul {
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.experience-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 1.5rem;
+  }
+
+  .experience-summary {
+    padding: 1rem;
+  }
+
+  .experience-link h3 {
+    font-size: 1.1rem;
+  }
+
+  .experience-link[target="_blank"]:hover::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 1rem;
+  }
+
+  .experience-summary {
+    padding: 0.75rem;
+  }
+
+  .experience-link {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-icon {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Optimización para móviles */
+@media (hover: none) {
+  .experience-summary:hover ~ .experience-content {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .experience-item[open] .experience-content {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .experience-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,108 @@
+/* conocimientos */
+
+/* Estilos para la sección de conocimientos */
+
+.knowledge-section {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.knowledge-subtitle {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilo de lista personalizado */
+.knowledge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.knowledge-item {
+  display: list-item; /* Fuerza el comportamiento de lista */
+  list-style-position: inside; /* Puntos dentro del flujo */
+}
+
+.knowledge-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+  transition: var(--transition);
+}
+
+.knowledge-icon {
+  width: 50px;
+  height: 50px;
+  transition: var(--transition);
+  filter: grayscale(20%);
+}
+
+.knowledge-link:hover .knowledge-icon {
+  transform: translateY(-5px);
+  filter: grayscale(0%);
+}
+
+/* Tooltip */
+.knowledge-tooltip {
+  position: absolute;
+  bottom: -25px;
+  background-color: var(--secondary-bg);
+  color: var(--accent-color);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: var(--transition);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.knowledge-link:hover .knowledge-tooltip {
+  opacity: 1;
+  transform: translateY(5px);
+}
+
+/* Efecto hover para los items */
+.knowledge-item:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .knowledge-list {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .knowledge-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .knowledge-list {
+    gap: 0.8rem;
+  }
+
+  .knowledge-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .knowledge-tooltip {
+    font-size: 0.7rem;
+    bottom: -20px;
+  }
+}

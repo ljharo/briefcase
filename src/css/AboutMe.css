@@ -1,0 +1,60 @@
+/* Estilos para el bloque de código */
+.code-block {
+  background-color: var(--primary-bg);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.code-block pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Colores de sintaxis */
+.code-comment {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.code-keyword {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.code-class {
+  color: #569cd6;
+}
+
+.code-function {
+  color: #dcdcaa;
+}
+
+.code-var {
+  color: var(--text-primary);
+}
+
+.code-string {
+  color: #ce9178;
+}
+
+/* Texto descriptivo */
+.about-description {
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .code-block {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+}
